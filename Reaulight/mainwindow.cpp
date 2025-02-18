@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "OpenGL/openglwidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -90,11 +89,15 @@ MainWindow::MainWindow(QWidget *parent)
         treeArborescence->expandAll();
 
     // Création d'un QDockWidget bas
-    dockBas = new QDockWidget("Panneau complémentaire", this);
-    addDockWidget(Qt::BottomDockWidgetArea, dockBas);
-    dockBas->setMinimumWidth(250);
-    dockBas->setMaximumWidth(450);
-    dockBas->setFeatures(dockBas->features() & QDockWidget::NoDockWidgetFeatures);
+        dockBas = new QDockWidget("Panneau complémentaire", this);
+        addDockWidget(Qt::BottomDockWidgetArea, dockBas);
+        dockBas->setMinimumWidth(250);
+        dockBas->setMaximumWidth(450);
+        dockBas->setFeatures(dockBas->features() & QDockWidget::NoDockWidgetFeatures);
+
+    // Gestion du widget OpenGL
+        openGlWidget = new OpenGlWidget(this);
+        setCentralWidget(openGlWidget);
 }
 
 MainWindow::~MainWindow() {}

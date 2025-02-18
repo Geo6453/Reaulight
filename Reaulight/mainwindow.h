@@ -18,7 +18,7 @@
 #include "projecteur.h"
 #include "sauvegarder_ou_importer.h"
 #include "arborescence_projet.h"
-
+#include "OpenGL/openglwidget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -53,8 +53,9 @@ private:
     QMenu *menuAide;
 
     Projecteur *proj1;
-    QList<Projecteur*> projecteur; // Liste des projecteurs instanciés
+    QList<Projecteur*> projecteur; // liste d'instance des projecteurs utilisés dans le projet
     sauvegarder_ou_importer SoI;
+    OpenGlWidget *openGlWidget;
 
     QFileSystemModel *modelExplorer; // Modèle pour l'onglet "Explorateur"
     arborescence_projet *arborescence;
