@@ -64,12 +64,12 @@ void Structure::setAxe(unsigned int id, QPair<QVector3D, QVector3D> axe)
     }
 }
 
-QList<QPair<QVector3D, QVector3D> > Structure::getAxes()
+QList < QPair < QVector3D, QVector3D > > Structure::getAxes()
 {
     return this->axes;
 }
 
-QPair<QVector3D, QVector3D> Structure::getAxe(unsigned int id)
+QPair<QVector3D, QVector3D > Structure::getAxe(unsigned int id)
 {
     if(id < this->axes.length())
     {

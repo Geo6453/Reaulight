@@ -144,23 +144,41 @@ MainWindow::MainWindow(QWidget *parent)
     QSpinBox *editV        = new QSpinBox(grille);
     QSpinBox *editB        = new QSpinBox(grille);
 
-    labelCouleur->setFixedWidth(200);
-    labelR->setFixedWidth(20);
-    labelV->setFixedWidth(20);
-    labelB->setFixedWidth(20);
+    labelCouleur->setMaximumWidth(200);
+    labelR->setMaximumWidth(30);
+    labelV->setMaximumWidth(30);
+    labelB->setMaximumWidth(30);
 
     labelCouleur->setAlignment(Qt::AlignCenter | Qt::AlignHCenter);
     labelR->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
     labelV->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
     labelB->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
 
-    editR->setFixedWidth(50);
-    editV->setFixedWidth(50);
-    editB->setFixedWidth(50);
+    editR->setMaximumWidth(100);
+    editV->setMaximumWidth(100);
+    editB->setMaximumWidth(100);
 
     editR->setRange(0, 255);
     editV->setRange(0, 255);
     editB->setRange(0, 255);
+
+    editR->setWrapping(true);
+    editV->setWrapping(true);
+    editB->setWrapping(true);
+
+    QFrame *colorViewer = new QFrame;
+    auto updateColor = [=]()
+    {
+        QColor color(editR->value(), editV->value(), editB->value());
+        QPalette palette = colorViewer->palette();
+        palette.setColor(QPalette::Window, color);
+        colorViewer->setPalette(palette);
+    };
+    connect(editR, QOverload<int>::of(&QSpinBox::valueChanged), updateColor);
+    connect(editV, QOverload<int>::of(&QSpinBox::valueChanged), updateColor);
+    connect(editB, QOverload<int>::of(&QSpinBox::valueChanged), updateColor);
+    updateColor();
+    colorViewer->setAutoFillBackground(true);
 
     QSlider *sliderFrequence = new QSlider(Qt::Horizontal, grille);
         sliderFrequence->setRange(0, 10);
@@ -199,14 +217,18 @@ MainWindow::MainWindow(QWidget *parent)
     separator1->setFrameStyle(QFrame::VLine | QFrame::Sunken);
     layout->addWidget(separator1,      0, 2, 4, 1);
 
-    layout->addWidget(labelCouleur,    0, 3, 1, 6);
-    layout->addWidget(labelR,          1, 3, 1, 1);
-    layout->addWidget(labelV,          1, 5, 1, 1);
-    layout->addWidget(labelB,          1, 7, 1, 1);
+    layout->addWidget(labelCouleur,    0, 3, 1, 2);
 
+    layout->addWidget(labelR,          1, 3, 1, 1);
     layout->addWidget(editR,           1, 4, 1, 1);
-    layout->addWidget(editV,           1, 6, 1, 1);
-    layout->addWidget(editB,           1, 8, 1, 1);
+
+    layout->addWidget(labelV,          2, 3, 1, 1);
+    layout->addWidget(editV,           2, 4, 1, 1);
+
+    layout->addWidget(labelB,          3, 3, 1, 1);
+    layout->addWidget(editB,           3, 4, 1, 1);
+
+    layout->addWidget(colorViewer,     1, 5, 3, 1);
 
     QFrame *separator2 = new QFrame();
     separator2->setFrameStyle(QFrame::VLine | QFrame::Sunken);
