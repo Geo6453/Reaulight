@@ -11,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     Items/projector.cpp \
+    Items/projector_old.cpp \
     Items/salledespectacle.cpp \
     Items/scene.cpp \
     Items/structure.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 
 HEADERS += \
     Items/projector.h \
+    Items/projector_old.h \
     Items/salledespectacle.h \
     Items/scene.h \
     Items/structure.h \
@@ -33,7 +35,6 @@ HEADERS += \
     Items/channel.h \
     mainwindow.h \
     global.h \
-    Items/projector.h \
     sauvegarder_ou_importer.h
 
 RESOURCES += \

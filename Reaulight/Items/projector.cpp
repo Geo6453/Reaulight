@@ -1,181 +1,234 @@
 #include "projector.h"
 
-Projector::Projector(QVector3D pos, int address, double distance_attache_rotation, double angle, QObject *parent)
+Projector::Projector(QObject *parent)
     : QObject{parent}
 {
-    // Attribution de la position
-    this->pos = pos;
 
-    // Attribution de l'identifiant
-    this->address = address;
-
-    this->distance_attache_rotation = distance_attache_rotation;
-    this->angle = angle;
 }
 
-QVector3D Projector::get_pos()
-{
-    return this->pos;
-}
-
-void Projector::set_position(QVector3D pos)
-{
-    this->pos = pos;
-}
-
-int Projector::get_address()
-{
-    return this->address;
-}
-
-void Projector::set_address(int address)
-{
-    this->address = address;
-}
-
-void Projector::set_mode(Modes mode)
-{
-    this->mode = mode;
-}
-
-Modes Projector::get_mode()
-{
-    return this->mode;
-}
-
-void Projector::set_color(QColor _color)
-{
-    this->color = _color;
-}
-
-QColor Projector::get_color()
-{
-    return this->color;
-}
-
-void Projector::set_angle(double angle)
-{
-    if (angle >= 0 && angle < 360)
-        this->angle = angle;
-    else if (angle == 360)
-        this->angle = 0;
-    else if (angle > 360)
-    {
-        while (angle > 360)
-            angle -= 360;
-        this->angle = angle;
-    }
-}
-
-double Projector::get_angle()
-{
-    return this->angle;
-}
-
-void Projector::set_size(int height, int width, int dimension)
-{
-    // si les tailles sont négatives ou nulles, on n'attribut pas
-    if (height > 0)
-        this->size.height = height;
-    if (width > 0)
-        this->size.width = width;
-    if (dimension > 0)
-        this->size.dimension = dimension;
-}
-
-Size Projector::get_size()
-{
-    return this->size;
-}
-
-void Projector::set_distance_attache_rotation(double distance)
-{
-    this->distance_attache_rotation = distance;
-}
-
-double Projector::get_distance_attache_rotation()
-{
-    return this->distance_attache_rotation;
-}
-
-QString Projector::get_name()
-{
-    return this->name;
-}
-
-void Projector::set_name(QString name)
-{
-    this->name = name;
-}
-
-double Projector::get_weight()
-{
-    return this->weight;
-}
-
-void Projector::set_weight(double weight)
-{
-    this->weight = weight;
-}
-
-QString Projector::get_model()
+QString Projector::getModel()
 {
     return this->model;
 }
 
-void Projector::set_model(QString model)
-{
-    this->model = model;
-}
-
-QString Projector::get_brand()
+QString Projector::getBrand()
 {
     return this->brand;
 }
 
-void Projector::set_brand(QString brand)
+QString Projector::getLightSourceType()
+{
+    return this->lightSourceType;
+}
+
+QString Projector::getPowerConsumption()
+{
+    return this->powerConsumption;
+}
+
+QString Projector::getVoltage()
+{
+    return this->voltage;
+}
+
+QString Projector::getFuse()
+{
+    return this->fuse;
+}
+
+QString Projector::getIPClass()
+{
+    return this->IPClass;
+}
+
+double Projector::getWeight()
+{
+    return this->weight;
+}
+
+double Projector::getLightAngle()
+{
+    return this->lightAngle;
+}
+
+double Projector::getLightIntensity()
+{
+    return this->lightIntensity;
+}
+
+double Projector::getLightIntensityDistance()
+{
+    return this->lightIntensityDistance;
+}
+
+QVector3D Projector::getDimensions()
+{
+    return this->dimensions;
+}
+
+QStringList Projector::getConnectors()
+{
+    return this->connectors;
+}
+
+QString Projector::getConnector(int connectorId)
+{
+    if(connectorId < this->connectors.length())
+    {
+        return this->connectors.at(connectorId);
+    }
+    else
+    {
+        return QString();
+    }
+}
+
+QList<int> Projector::getChannelModes()
+{
+    return this->channelModes;
+}
+
+int Projector::getChannelMode(int id)
+{
+    if(id < this->channelModes.length())
+    {
+        return this->channelModes.at(id);
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+
+QList<Channel> Projector::getChannels(int id)
+{
+    if(id < this->channels.length())
+    {
+        return this->channels.at(id);
+    }
+    else
+    {
+        return QList<Channel>();
+    }
+}
+
+
+
+
+void Projector::setModel(QString model)
+{
+    this->model = model;
+}
+
+void Projector::setBrand(QString brand)
 {
     this->brand = brand;
 }
 
-int Projector::get_nb_channel()
+void Projector::setLightSourceType(QString lightSourceType)
 {
-    return this->nb_channel;
+    this->lightSourceType = lightSourceType;
 }
 
-void Projector::set_nb_channel(int nb_channel)
+void Projector::setPowerConsumption(QString powerConsumption)
 {
-    this->nb_channel = nb_channel;
+    this->powerConsumption = powerConsumption;
 }
 
-void Projector::add_channel(int place, QList<int> range)
+void Projector::setVoltage(QString voltage)
 {
-    // Si la place du canal est -1, on l'intancie à la fin de la liste
-    if (place == -1)
-        this->channels.push_back(new Channel((int)(this->channels.size()) + 1, range));
+    this->voltage = voltage;
+}
 
-    // sinon, on instancie un canal à la place d'un autre
-    // donc on le désintancie et en instancie un autre à la place
-    if (place >= 0 && place < (int)(this->channels.size()))
+void Projector::setFuse(QString fuse)
+{
+    this->fuse = fuse;
+}
+
+void Projector::setIPClass(QString IPClass)
+{
+    this->IPClass = IPClass;
+}
+
+void Projector::setWeight(double weight)
+{
+    this->weight = weight;
+}
+
+void Projector::setLightAngle(double lightAngle)
+{
+    this->lightAngle = lightAngle;
+}
+
+void Projector::setIntensity(double lightIntensity)
+{
+    this->lightIntensity = lightIntensity;
+}
+
+void Projector::setLightIntensityDistance(double lightIntensityDistance)
+{
+    this->lightIntensityDistance = lightIntensityDistance;
+}
+
+void Projector::setDimensions(QVector3D dimensions)
+{
+    this->dimensions = dimensions;
+}
+
+void Projector::setDimensions(int x, int y, int z)
+{
+    if(x < 0 || y < 0 || z < 0)
     {
-        this->remove_channel(place);
-        this->channels.insert(this->channels.begin() + place, new Channel(place, range));
+        this->dimensions = QVector3D(0,0,0);
     }
-
-    // Ou encore, si on en instancie un à un endroit mémoire où aucun canal n'est défini, on l'intancie
-    if (place >= (int)(this->channels.size()) && place <= 255)
-        this->channels.insert(this->channels.begin() + place, new Channel(place, range));
+    else
+    {
+        this->dimensions = QVector3D(x, y, z);
+    }
 }
 
-void Projector::remove_channel(int place)
+void Projector::setConnectors(QStringList connectors)
 {
-    // On désintancie un canal à la fin de la liste
-    if (place == -1)
-        this->channels.removeAt(place); // On désalloue la mémoire
-
-    // On veut désintancier un canal dans ceux déjà instancié
-    if (place >= 0 && place < (int)(this->channels.size()))
-        this->channels.removeAt(place); // On désalloue la mémoire
+    this->connectors = connectors;
 }
 
-QList<Channel *> Projector::get_channels() { return this->channels; }
+void Projector::addConnector(QString connector)
+{
+    if(connector != QString())
+    {
+        this->connectors.append(connector);
+    }
+}
+
+void Projector::removeConnector(QString connector)
+{
+    int index = this->connectors.indexOf(connector);
+    this->connectors.removeAt(index);
+}
+
+void Projector::removeConnector(int connectorId)
+{
+    if(connectorId < this->connectors.length())
+    {
+        this->connectors.removeAt(connectorId);
+    }
+}
+
+void Projector::addChannelMode(int channelsCount, QList<Channel> channels)
+{
+    if(channelsCount > 0 && channels.length() > 0)
+    {
+        this->channelModes.append(channelsCount);
+        this->channels.append(channels);
+    }
+}
+
+void Projector::removeChannelMode(int channelId)
+{
+    if(channelId < channels.length())
+    {
+        this->channels.removeAt(channelId);
+        this->channelModes.removeAt(channelId);
+    }
+}
