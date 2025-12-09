@@ -8,6 +8,18 @@ Channel::Channel(int place, QList<int> range_value, QObject *parent) : QObject{p
     else this->range_value = {0, 255};
 }
 
+//TODO
+Channel::Channel(QJsonObject channel)
+{
+
+}
+
+//TODO
+QJsonDocument Channel::getJSON()
+{
+    return QJsonDocument();
+}
+
 void Channel::set_place(int place)
 {
     if (place >= 0 && place <= 255)

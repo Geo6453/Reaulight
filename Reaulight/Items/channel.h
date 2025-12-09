@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 // TO DO : Mettre une plage de valeur pour les valeurs du canal courant et faire en sorte de ne pas envoyer une valeur qui n'est pas dans cette plage
 
@@ -20,6 +22,10 @@ class Channel : public QObject
          * @param parent:QObject, objet parent de QT
          */
         Channel(int place, QList<int> range_value, QObject *parent = nullptr);
+
+        //TODO
+        Channel(QJsonObject channel);
+        QJsonDocument getJSON();
 
         /**
          * @brief Méthode renvoyant le type du projecteur

@@ -273,7 +273,7 @@ QString Save_or_import::setRoomName(QString name)
     return this->roomName = name;
 }
 
-void Save_or_import::setProjectorList(QList<Projector *> proj)
+void Save_or_import::setProjectorList(QList<Projector_old *> proj)
 {
     QJsonArray convertQlistToArray;
 

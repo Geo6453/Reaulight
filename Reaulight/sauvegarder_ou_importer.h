@@ -10,7 +10,7 @@
 #include <QJsonValue>
 #include <QJsonArray>
 
-#include "Items/projector.h"
+#include "Items/projector_old.h"
 
 enum dialogType {save, import, saveIfOpen};
 
@@ -30,7 +30,7 @@ class Save_or_import : public QObject
 
         //seter
         QString setRoomName(QString name);
-        void setProjectorList(QList<Projector*> proj);
+        void setProjectorList(QList<Projector_old*> proj);
 
     signals:
         void isSavingAccept(bool accepted);

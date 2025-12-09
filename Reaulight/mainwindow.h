@@ -4,7 +4,7 @@
 #include <QtWidgets>
 #include <QDesktopServices>
 
-#include "Items/projector.h"
+#include "Items/projector_old.h"
 #include "sauvegarder_ou_importer.h"
 #include "arborescence_projet.h"
 
@@ -28,7 +28,7 @@ private:
     QWidget *dockWidgetContents;
     QMenu *menuAide;
 
-    Projector *proj1;
+    Projector_old *proj1;
     Save_or_import* SoI;
 
     QFileSystemModel *modelExplorer; // Modèle pour l'onglet "Explorateur"
