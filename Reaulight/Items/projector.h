@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QVector3D>
+#include <QJsonDocument>
 #include "channel.h"
 
 class Projector : public QObject
@@ -10,6 +11,16 @@ class Projector : public QObject
     Q_OBJECT
     public:
         explicit Projector(QObject *parent = nullptr);
+        Projector(QString fileName, QObject *parent = nullptr);
+        Projector(QJsonDocument document, QObject *parent = nullptr);
+
+        void load(QJsonDocument document);
+        void load(QString filename);
+        void load();
+
+        void save(QString filename = "");
+        QJsonDocument getJSON();
+
 
         //Accesseurs
         QString getModel();
@@ -28,7 +39,7 @@ class Projector : public QObject
         QString getConnector(int connectorId);
         QList<int> getChannelModes();
         int getChannelMode(int id);
-        QList<Channel> getChannels(int id);
+        QList<Channel*> getChannels(int id);
 
         void setModel(QString model);
         void setBrand(QString brand);
@@ -47,7 +58,7 @@ class Projector : public QObject
         void addConnector(QString connector);
         void removeConnector(QString connector);
         void removeConnector(int connectorId);
-        void addChannelMode(int channelsCount, QList<Channel> channels);
+        void addChannelMode(int channelsCount, QList<Channel*> channels);
         void removeChannelMode(int channelId);
 
     signals:
@@ -70,7 +81,9 @@ class Projector : public QObject
         QVector3D dimensions;
         QStringList connectors;
         QList<int> channelModes;
-        QList< QList<Channel> > channels;//TODO Channels Config
+        QList< QList<Channel*> > channels;//TODO Channels Config
+
+        QString filename;
 };
 
 #endif // PROJECTOR_H
