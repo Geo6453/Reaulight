@@ -11,26 +11,28 @@ CONFIG += c++17
 
 SOURCES += \
     Items/projector.cpp \
+    Items/projector_old.cpp \
     Items/salledespectacle.cpp \
     Items/scene.cpp \
     Items/structure.cpp \
     Items/triangle.cpp \
     arborescence_projet.cpp \
     OpenGL/openglwidget.cpp \
-    canal.cpp \
+    Items/channel.cpp \
     main.cpp \
     mainwindow.cpp \
     sauvegarder_ou_importer.cpp
 
 HEADERS += \
     Items/projector.h \
+    Items/projector_old.h \
     Items/salledespectacle.h \
     Items/scene.h \
     Items/structure.h \
     Items/triangle.h \
     arborescence_projet.h \
     OpenGL/openglwidget.h \
-    canal.h \
+    Items/channel.h \
     mainwindow.h \
     global.h \
     sauvegarder_ou_importer.h

@@ -1,0 +1,34 @@
+{
+	"type":"projector",
+	"model":"Mini PAR RGBW",
+	"brand":"Ibiza",
+	"lightSourceType":"12 LED 1W R/G/B/W",
+	"powerConsumption":"15W",
+	"voltage":"220-240V AC@50/60Hz",
+	"fuse":"Aucun",
+	"IPClass":"IP20",
+	"weight":0.400,
+	"lightAngle":20,
+	"lightIntensity":1200,
+	"lightIntensityDistance":5,
+	"dimensions":
+	{
+		"x":120,
+		"y":90,
+		"z":120
+	},
+	"connectors":
+	[
+		"XLR 3 broches"
+	],
+	"channelModes":
+	[
+		8
+	],
+	"channels":
+	[
+		[
+			"chan1","chan2","chan3"
+		]
+	]
+}
